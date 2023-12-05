@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Number Search</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        /* Initial search bar styling */
+        #searchContainer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease; /* Smooth transition for search bar changes */
+        }   
+
+        /* Position the search bar at the top after the search */
+        #searchContainer.active {
+            top: 20px;
+            transform: translateX(-50%);
+        }
+        #designInput {
+            font-size: 1em;
+            padding: 10px;
+            width: 250px; /* Fixed width for the search input */
+        }
+        #searchButton {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        /* Results and description container */
+        /* Remaining CSS for imageContainer, productDescription, media queries... */
+        .container {
+            display: flex;
+            flex-wrap: wrap; /* Allow items to wrap as necessary */
+            gap: 20px; /* Space between items */
+        }
+        #imageContainer {
+            /* Limit the width for the image container, but allow it to shrink and grow */
+            flex: 1 1 100%; /* Full width by default */
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Space between images */
+            max-width: 1000px; /* Maximum width of the image container */
+        }
+        #imageContainer img {
+            width: 100%; /* Make images responsive */
+            height: auto; /* Maintain aspect ratio */
+            display: block; /* Ensures that each image takes up a full line */
+        }
+        #productDescription {
+            /* Allow the description to grow and shrink with a base size */
+            flex: 3 1 60%; /* Grow to use available space, start at 200px */
+            min-width: 250px; /* Minimum width of the description */
+        }
+        #productDescription p {
+            margin: 0 0 10px 0; /* Spacing between paragraphs */
+        }
+        #productDescription p:first-child {
+            font-weight: bold; /* Make the first paragraph bold */
+        }
+        @media (max-width: 1000px) {
+            /* For smaller screens, stack the containers vertically */
+            .container {
+                flex-direction: column;
+            }
+            #imageContainer,
+            #productDescription {
+                /* On small screens, let each container take full width */
+                flex-basis: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="searchContainer">
+    <input type="text" id="designInput" placeholder="Enter Design Number...">
+    <button id="searchButton" onclick="searchDesign()">Search</button>
+</div>
+
+<!-- Make sure the result container has enough margin at the top to not overlap the search bar when it moves -->
+<div id="result" style="margin-top: 100px;">
+    <!-- This container will hold the image results -->
+    <div id="imageContainer"></div>
+    <!-- This container will hold the product description -->
+    <div id="productDescription"></div>
+</div>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
